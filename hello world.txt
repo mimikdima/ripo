@@ -3,6 +3,6 @@ print("Hello evrebody;")
 print("Hello;")
 print("Hello my dear friend;")
 print("Glad to see you;")
-print("Hello m;")
-print("Glad to;")
+print("Hello m")
+print("Glad to")
 
