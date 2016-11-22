@@ -1,6 +1,0 @@
-print("Hello World;")
-print("Hello evrebody;")
-print("Hello;")
-print("Hello my dear friend;")
-print("Glad to see you;")
-print("free wifi")
