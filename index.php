@@ -1,55 +1,35 @@
-<?php
-session_start();
-include('conn.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
-if(isset($_SESSION['manager'])) {
- // echo "Your session is running " . $_SESSION['manager'];
-}
-
-if(isset($_SESSION["manager"])){
-$sql = "SELECT price,compatible_cars, information ,on_stock, quantity
-		FROM parts";
-$result = $conn->query($sql);
-		echo '<table cellpadding="0" cellspacing="0" class="db-table">';
-		echo '<tr><th>Price</th><th>Compatible Cars</th><th>Information</th><th>On Stock</th><th>Quantity</th></tr>';
-		while($row = $result->fetch_assoc()) {
-			echo '<tr>';
-			foreach($row as $key=>$value) {
-				echo '<td>',$value,'</td>';
-			}
-			echo '</tr>';
-		}
-		echo '</table><br />';
-		echo '<a href = "logout.php" tite = "Logout">Logout</a>';
-}else{
-$sql = "SELECT price,compatible_cars, information
-		FROM parts";
-$result = $conn->query($sql);
-		echo '<table cellpadding="0" cellspacing="0" class="db-table">';
-		echo '<tr><th>Price</th><th>Compatible Cars</th><th>Information</th></tr>';
-		while($row = $result->fetch_assoc()) {
-			echo '<tr>';
-			foreach($row as $key=>$value) {
-				echo '<td>',$value,'</td>';
-			}
-			echo '</tr>';
-		}
-		echo '</table><br />';	
-}	
-
-?>
-<html>
-<head>
-<style>
-table.db-table 		{ border-right:1px solid #ccc; border-bottom:1px solid #ccc; }
-table.db-table th	{ background:#eee; padding:5px; border-left:1px solid #ccc; border-top:1px solid #ccc; }
-table.db-table td	{ padding:5px; border-left:1px solid #ccc; border-top:1px solid #ccc; }
-</style>
-</head>
-<body>
-</body>
-</html>
+<html>  
+      <head>  
+           <title>Live Table Data Edit</title>  
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+           
+      </head>  
+      <body>  
+           <div class="container">  
+                <br />  
+                <br />  
+                <br />  
+                <div class="table-responsive">  
+                     <h3 align="center">Matrix Test</h3><br />  
+                     <div id="live_data"></div>                 
+                </div>  
+           </div>  
+      </body>  
+ </html>  
+ <script>  
+ $(document).ready(function(){  
+      function fetch_data()  
+      { 
+           $.ajax({  
+                url:"2.php",  
+                method:"POST",  
+                success:function(data){  
+                     $('#live_data').html(data);  
+                }  
+           });  
+      }  
+      fetch_data();  
+ });  
+ </script>  
