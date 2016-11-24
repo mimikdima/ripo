@@ -253,7 +253,6 @@ $('.web').fadeOut('fast');
            var name = $('.name').val();  
 		   var address = $('#address').val();     
 		   var phone = $('#phone').val(); 
-		   console.log(part_id);
            if(name == '')  
            {  
                 alert("Enter Name");  
