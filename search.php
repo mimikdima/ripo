@@ -45,10 +45,10 @@ $information_search = $_POST['infosearch'];
 					$output .= '  
 						<tr>  
 							 <td>'.$row["id"].'</td>  
-							 <td class="price" data-id1="'.$row["id"].'" >'.$row["price"].'</td>  
+							 <td class="price" data-id1="'.$row["id"].'" id="'.$row["id"].'" >'.$row["price"].'</td>  
 							 <td class="compatible_cars" data-id2="'.$row["id"].'" >'.$row["compatible_cars"].'</td>  
 							 <td class="information" data-id3="'.$row["id"].'" >'.$row["information"].'</td>
-							 <td width="5%"><button type="button" name="btn_buy" id="btn_buy" class="btn btn-xs btn-success">+ Buy</button></td>
+							<td width="5%"><button type="button" name="btn_buy" id="'.$row["id"].'" value="" class="btn btn-xs btn-success btn_buy">+ Buy</button></td>
 						</tr> 
 					'; 
 			}
