@@ -1,23 +1,13 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "test_matrix";
+include('conn.php');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
 
 //Parts Table
 $sql = "CREATE TABLE parts (
 id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 price INT NOT NULL,
 compatible_cars VARCHAR(255) NOT NULL,
-on_stock INT,
 quantity INT,
 information VARCHAR(255)
 )";
@@ -28,13 +18,13 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 
-$sql = "INSERT INTO parts (price,compatible_cars,on_stock,quantity,information)
+$sql = "INSERT INTO parts (price,compatible_cars,quantity,information)
 VALUES ('100','Mitsubishi Super Lancer model 1997','1','55','left mirror'),
-		('55','Kia Sportage 2002,Porshe 2001 ','1','20','right mirror'),
-		('55','lamborghini 2016','1','20','motor'),
-		('55','Kia 2012','1','20','steering wheel'),
-		('55','Kia Sportage 2002,lamborghini 2016','1','20','wheels'),
-		('10','Porshe 2001,Porshe 2020','1','10','wheels')";
+		('55','Kia Sportage 2002,Porshe 2001 ','1','right mirror'),
+		('55','lamborghini 2016','1','motor'),
+		('55','Kia 2012','20','steering wheel'),
+		('55','Kia Sportage 2002,lamborghini 2016','20','wheels'),
+		('10','Porshe 2001,Porshe 2020','10','wheels')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully"."<br/>";
@@ -67,6 +57,28 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
+
+
+//Orders Table
+$sql = "CREATE TABLE orders (
+id INT AUTO_INCREMENT PRIMARY KEY, 
+name VARCHAR(30) NOT NULL,
+address VARCHAR(255) NOT NULL,
+phone INT NOT NULL,
+id_of_part INT NOT NULL
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table users created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+
+
+
+
 
 
 
