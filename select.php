@@ -1,4 +1,5 @@
 <?php  
+ session_start();
 include('conn.php');
  $output = '';  
  $sql = "SELECT * FROM parts ORDER BY id ASC";  
@@ -7,36 +8,55 @@ include('conn.php');
       <div class="table-responsive">  
            <table class="table table-bordered">  
                 <tr>  
-                     <th width="10%">Id</th>  
-                     <th width="30%">price</th>  
-                     <th width="30%">Compatible Cars</th>  
-                     <th width="10%">information</th>  
-					  <th width="10%">Add</th>  
-                </tr>';  
+                     <th width="5%">Id</th>  
+                     <th width="5%">Price</th>  
+                     <th width="20%">Compatible Cars</th>  
+                     <th width="20%">information</th>  ';
+					if(isset($_SESSION["manager"])){ 
+					  $output .= ' 
+                     <th width="5%">Quantity</th>
+					 <th width="5%">Add</th>';
+					}
+                $output .= ' </tr>';  
  if(mysqli_num_rows($result) > 0)  
  {  
       while($row = mysqli_fetch_array($result))  
-      {  
-           $output .= '  
-                <tr>  
-                     <td>'.$row["id"].'</td>  
-                     <td class="price" data-id1="'.$row["id"].'" contenteditable>'.$row["price"].'</td>  
-                     <td class="compatible_cars" data-id2="'.$row["id"].'" contenteditable>'.$row["compatible_cars"].'</td>  
-					 <td class="information" data-id3="'.$row["id"].'" contenteditable>'.$row["information"].'</td>  
-                     <td><button type="button" name="delete_btn" data-id3="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>  
-                </tr>  
-           ';  
+      {
+			if(isset($_SESSION["manager"])){ 	
+				   $output .= '  
+						<tr>  
+							 <td>'.$row["id"].'</td>  
+							 <td class="price" data-id1="'.$row["id"].'" contenteditable>'.$row["price"].'</td>  
+							 <td class="compatible_cars" data-id2="'.$row["id"].'" contenteditable>'.$row["compatible_cars"].'</td>  
+							 <td class="information" data-id3="'.$row["id"].'" contenteditable>'.$row["information"].'</td>
+							 <td class="quantity" data-id5="'.$row["id"].'" contenteditable>'.$row["quantity"].'</td>
+							 <td></td> 
+						</tr> 
+					';  
+			}else{
+					$output .= '  
+						<tr>  
+							 <td>'.$row["id"].'</td>  
+							 <td class="price" data-id1="'.$row["id"].'" >'.$row["price"].'</td>  
+							 <td class="compatible_cars" data-id2="'.$row["id"].'" >'.$row["compatible_cars"].'</td>  
+							 <td class="information" data-id3="'.$row["id"].'" >'.$row["information"].'</td>
+							 	<td width="5%"><button type="button" name="btn_buy" id="btn_buy" class="btn btn-xs btn-success">+ Buy</button></td>
+						</tr> 
+					'; 
+			}
       }  
+if(isset($_SESSION["manager"])){
       $output .= '  
            <tr>  
                 <td></td>  
                 <td id="price" contenteditable></td>  
                 <td id="compatible_cars" contenteditable></td>  
-				<td id="information" contenteditable></td>  
-                <td><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>  
-           </tr>  
-      ';  
- }  
+				<td id="information" contenteditable></td> 
+				<td id="quantity" contenteditable></td>  					
+				<td width="5%"><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+ Add</button></td>
+			</tr>  ';
+}
+ } 
  else  
  {  
       $output .= '<tr>  
