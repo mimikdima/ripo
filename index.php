@@ -73,6 +73,12 @@
       </body>  
  </html>  
  <script>  
+
+ 
+
+
+ 
+ 
  
  
  $(function(){
@@ -132,7 +138,7 @@ $('#information_search_id').click(function(){
  
  
  $(document).ready(function(){  
- $('#reset_search').on("click", function(e) { 
+$('#reset_search').on("click", function(e) { 
 	fetch_data();  
 });
       function fetch_data()  
@@ -224,5 +230,58 @@ $('#information_search_id').click(function(){
 				edit_data(id, quantity, "quantity");
 		   }
       }); 
+	  
+$(document).on('click', '.btn_buy', function(){  
+$('.web').fadeOut('fast');
+	var buy_id = $(this).attr('id')
+	var buy = 'buy_id='+ buy_id;
+
+           $.ajax({  
+                url:"select.php",  
+                method:"POST",  
+				dataType:"text",
+				data: buy,
+                success:function(data){  
+                     $('#live_data').html(data);  
+                }  
+           });
+			
+});
+ 
+ $(document).on('click', '#order', function(){  
+           var part_id = $('.price').attr('id'); //id of order
+           var name = $('.name').val();  
+		   var address = $('#address').val();     
+		   var phone = $('#phone').val(); 
+		   console.log(part_id);
+           if(name == '')  
+           {  
+                alert("Enter Name");  
+                return false;  
+           }  
+           if(address == '')  
+           {  
+                alert("Enter address");  
+                return false;  
+           }  
+           if(phone == '')  
+           {  
+                alert("Enter phone");  
+                return false;  
+           } 
+           $.ajax({  
+                url:"buy.php",  
+                method:"POST",  
+                data:{name:name,address:address, phone:phone,part_id:part_id},  
+                dataType:"text",  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     fetch_data();  
+					 $('.web').fadeIn('fast');
+                }  
+           })  		   
+ });	  
+	  
  });  
  </script>  
