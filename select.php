@@ -92,7 +92,7 @@ include('conn.php');
 			  $output .= '  
 				   <tr>  
 						<td></td>  
-						<td id="price" contenteditable></td>  
+						<td id="price" required contenteditable></td>  
 						<td id="compatible_cars" contenteditable></td>  
 						<td id="information" contenteditable></td> 
 						<td id="quantity" contenteditable></td>  					
