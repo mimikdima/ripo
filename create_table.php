@@ -19,7 +19,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $sql = "INSERT INTO parts (price,compatible_cars,quantity,information)
-VALUES ('100','Mitsubishi Super Lancer model 1997','1','55','left mirror'),
+VALUES ('100','Mitsubishi Super Lancer model 1997','55','left mirror'),
 		('55','Kia Sportage 2002,Porshe 2001 ','1','right mirror'),
 		('55','lamborghini 2016','1','motor'),
 		('55','Kia 2012','20','steering wheel'),
@@ -50,7 +50,7 @@ if ($conn->query($sql) === TRUE) {
 
 
 $sql = "INSERT INTO users (user_status,login,password)
-VALUES ('administrator','admin','1234'),('manager','manager','manager')";
+VALUES ('manager','manager','manager')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully"."<br/>";
