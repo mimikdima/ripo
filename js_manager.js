@@ -59,7 +59,7 @@
 		   if(isNaN(quantity)){
 			    alert('Please enter a valid number');
 				$('#quantity').html('');
-				$('#price').focus();
+				$('#quantity').focus();
 			    $('#quantity').css('border','2px solid red');
 				return false;  
 		   }else{$('#price').css('border','none');}
